@@ -189,18 +189,14 @@ console.log(iterator.next()); // { value: 2, done: false }
 console.log(iterator.next()); // { value: 3, done: false }
 console.log(iterator.next()); // { value: undefined, done: true }
 
-
-
 function* fibonacciGenerator() {
-  let prev = 0, curr = 1;
+  let prev = 0,
+    curr = 1;
   while (true) {
     try {
       yield curr;
       [prev, curr] = [curr, prev + curr];
-    } catch (err) {
-
-    }
-      
+    } catch (err) {}
   }
 }
 
@@ -209,11 +205,109 @@ for (let i = 0; i < 10; i++) {
   console.log(fib.next().value);
 }
 
-
-
 function* asyncGenerator() {
-  const result1 = yield fetchDataFromAPI('endpoint1');
-  const result2 = yield fetchDataFromAPI('endpoint2');
+  const result1 = yield fetchDataFromAPI("endpoint1");
+  const result2 = yield fetchDataFromAPI("endpoint2");
   return [result1, result2];
 }
 
+// Big O()
+
+// Time Complexity
+// Space Complexity
+
+// O(1)
+// Static no of executions - fixed times
+
+const fun = () => {
+  console.log("Hey");
+};
+
+// O(n)
+// Proportional
+
+const fun2 = (n) => {
+  for (var i = 0; i < n; i++) {
+    console.log("Hey");
+  }
+};
+
+// O(n2)
+// loop inside a loop
+
+const fun3 = (n) => {
+  for (var i = 0; i < n; i++) {
+    for (var j = 0; j < n; i++) {
+      console.log("Hey");
+    }
+  }
+};
+
+// O(log(n))
+
+// n=8
+// divide by 2
+// how many iter?
+
+// log(8) = 3
+// 8 = 2`2
+
+// O(1)
+
+// Getting the 1st item from an array
+function getFirstElement(arr) {
+  return arr[0];
+}
+
+// Accesing any value of a property
+const person = { name: "Alice", age: 30 };
+const name = person.name; // O(1)
+
+// Adding & Removing item from the end of an Array
+const numbers = [1, 2, 3];
+numbers.push(4); // O(1)
+numbers.pop(); // O(1)
+
+// O(log(n))
+// searching through a sorted array
+
+function binarySearch(sortedArray, target) {
+  let left = 0;
+  let right = sortedArray.length - 1;
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+    if (sortedArray[mid] === target) return mid;
+    if (sortedArray[mid] < target) left = mid + 1;
+    else right = mid - 1;
+  }
+  return -1;
+}
+
+// Traversing a balanced search tree
+
+class TreeNode {
+  // Node definition
+}
+
+function findLargestNode(node) {
+  while (node.right) {
+    node = node.right;
+  }
+  return node;
+}
+
+// 1, 1, 2, 3, 5, 8, 13
+
+function fibonacciRecursive(n) {
+  if (n <= 0) {
+    return 0;
+  }
+  if (n === 1) {
+    return 1;
+  }
+  return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+}
+
+// Calculate the 7th Fibonacci number
+const result = fibonacciRecursive(7);
+console.log(result); // Output: 13
